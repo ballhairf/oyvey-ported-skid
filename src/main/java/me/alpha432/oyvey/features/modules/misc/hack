@@ -1,0 +1,50 @@
+package me.alpha432.oyvey.features.modules.misc;
+
+import me.alpha432.oyvey.OyVey;
+import me.alpha432.oyvey.features.commands.Command;
+import me.alpha432.oyvey.features.modules.Module;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import org.lwjgl.glfw.GLFW;
+
+public class MCFModule extends Module {
+    private boolean pressed;
+import { useEffect, useState } from "react";
+
+type HighlightedChunkProps = {
+  children: React.ReactNode;
+  isLoading?: boolean;
+  highlightAfterMs?: number;
+};
+
+export default function HighlightedChunk({
+  children,
+  isLoading = false,
+  highlightAfterMs = 3000,
+}: HighlightedChunkProps) {
+  const [shouldHighlight, setShouldHighlight] = useState(false);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setShouldHighlight(false);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setShouldHighlight(true);
+    }, highlightAfterMs);
+
+    return () => clearTimeout(timer);
+  }, [isLoading, highlightAfterMs]);
+
+  return (
+    <div
+      className={`transition-all duration-300 rounded-md p-2 ${
+        shouldHighlight
+          ? "bg-yellow-100 ring-2 ring-yellow-400"
+          : ""
+      }`}
+    >
+      {children}
+    </div>
+  );
