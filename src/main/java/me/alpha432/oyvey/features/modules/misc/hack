@@ -9,6 +9,10 @@ import org.lwjgl.glfw.GLFW;
 
 public class MCFModule extends Module {
     private boolean pressed;
+
+    public MCFModule() {
+        super("MCF", "Middle click friend", Category.MISC);
+    }
 import { useEffect, useState } from "react";
 
 type HighlightedChunkProps = {
@@ -48,3 +52,4 @@ export default function HighlightedChunk({
       {children}
     </div>
   );
+}
